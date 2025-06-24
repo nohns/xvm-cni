@@ -77,7 +77,7 @@ NETCONF=$(cat "$CNI_CONF")
 
 # Create the command arguments
 CONTAINER_ID="test-container-$(date +%s)"
-IFNAME="eth0"
+IFNAME="enp0s1"
 NETNS="/var/run/netns/xvm-test-ns"
 
 # Call the CNI plugin to add the container to the network
