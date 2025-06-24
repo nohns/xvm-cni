@@ -62,6 +62,16 @@ cat > "$CNI_CONF" << EOF
 EOF
 echo "Created CNI configuration at: $CNI_CONF"
 
+# Echo the configuration in an indented way
+echo "Configuration:"
+if command -v jq &> /dev/null; then
+    # If jq is available, use it for pretty printing
+    jq . "$CNI_CONF"
+else
+    # Otherwise, use cat with indentation
+    echo "$(cat "$CNI_CONF" | sed 's/^/    /')"
+fi
+
 # Create the netconf data to pass to the CNI plugin
 NETCONF=$(cat "$CNI_CONF")
 
